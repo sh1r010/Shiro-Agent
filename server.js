@@ -2,7 +2,6 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const { analyzTechnicalSEO } = require("./Agent/Shiro-Scan-Core");
-const {getWeather} = require ("./services/weather.js")
 require("dotenv").config();
 
 const app = express();
@@ -24,9 +23,11 @@ app.listen(PORT, () => {
 
 app.post('/analyze', async (req,res) => {
   const {url} = req.body
-
+  console.log('✅ Роут /analyze вызван!', req.body);
   const result = await analyzTechnicalSEO(url)
 
   return res.json(result)
 })
+
+
 
